@@ -54,13 +54,13 @@ public class AuthController {
             BadCredentialsException,
             DisabledException,
             UsernameNotFoundException {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getEmail(),
-                    authenticationRequest.getPassword()));
-        } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Incorrect username or password.");
-        }
+//        try {
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                    authenticationRequest.getEmail(),
+//                    authenticationRequest.getPassword()));
+//        } catch (BadCredentialsException e) {
+//            throw new BadCredentialsException("Incorrect username or password.");
+//        }
         final UserDetails userDetails = userService.userDetailsService().loadUserByUsername(authenticationRequest.getEmail());
         Optional<User> optionalUser = userRepository.findFirstByEmail(userDetails.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
