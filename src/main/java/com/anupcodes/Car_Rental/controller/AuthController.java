@@ -1,9 +1,6 @@
 package com.anupcodes.Car_Rental.controller;
 
-import com.anupcodes.Car_Rental.dto.AuthenticationRequest;
-import com.anupcodes.Car_Rental.dto.AuthenticationResponse;
-import com.anupcodes.Car_Rental.dto.SignupRequest;
-import com.anupcodes.Car_Rental.dto.UserDto;
+import com.anupcodes.Car_Rental.dto.*;
 import com.anupcodes.Car_Rental.entity.User;
 import com.anupcodes.Car_Rental.repository.UserRepository;
 import com.anupcodes.Car_Rental.services.auth.AuthService;
@@ -40,7 +37,10 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signupCustomer(@RequestBody SignupRequest signupRequest) {
         if (authService.hasCustomerWithEmail(signupRequest.getEmail())) {
-            return new ResponseEntity<>("Email id already exists", HttpStatus.NOT_ACCEPTABLE);
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setErrorCode(HttpStatus.NOT_ACCEPTABLE.value());
+            errorResponse.setMessage("Email id already exists");
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
         }
         UserDto createdCustomerDto = authService.createCustomer(signupRequest);
         if (createdCustomerDto == null) return new ResponseEntity<>
