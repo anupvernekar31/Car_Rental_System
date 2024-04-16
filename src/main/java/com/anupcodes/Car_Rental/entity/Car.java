@@ -25,6 +25,8 @@ public class Car {
 //    private byte[] image;
     @Column(columnDefinition = "MEDIUMTEXT")
     private String image;
+    private boolean favourite;
+    private boolean booked;
 
     public CarDto getCarDto(){
         CarDto carDto = new CarDto();
@@ -39,6 +41,8 @@ public class Car {
         carDto.setYear(year);
         // carDto.setReturnedImage(image);
         carDto.setImage(image);
+        carDto.setFavourite(favourite);
+        carDto.setBooked(booked);
         return carDto;
 
 

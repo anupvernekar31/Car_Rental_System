@@ -1,5 +1,6 @@
-package com.anupcodes.Car_Rental.services.auth.admin;
+package com.anupcodes.Car_Rental.services.admin;
 
+import com.anupcodes.Car_Rental.dto.BookACarDto;
 import com.anupcodes.Car_Rental.dto.CarDto;
 
 import java.io.IOException;
@@ -14,4 +15,9 @@ public interface AdminService {
     void deleteCar(Long id);
 
     boolean updateCar(Long id, CarDto carDto);
+
+    List<BookACarDto> getBookings();
+
+    boolean changeBookinStatus(long bookingId, String status);
+
 }

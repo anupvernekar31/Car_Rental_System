@@ -19,4 +19,6 @@ public class CarDto {
     // private MultipartFile image;
     private String image;
     private  byte[] returnedImage;
+    private boolean favourite;
+    private boolean booked;
 }
