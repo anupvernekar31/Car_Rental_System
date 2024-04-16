@@ -31,6 +31,7 @@ public class AdminServiceImpl implements AdminService {
             car.setYear(carDto.getYear());
             //car.setImage(carDto.getImage().getBytes());
             car.setImage(carDto.getImage());
+            car.setFavourite(carDto.isFavourite());
             carRepository.save(car);
             return true;
         } catch (Exception e) {
@@ -53,9 +54,10 @@ public class AdminServiceImpl implements AdminService {
         Optional<Car> optionalCar = carRepository.findById(carId);
         if(optionalCar.isPresent()){
             Car existingCar = optionalCar.get();
-            if(carDto.getImage() != null){
-                existingCar.setImage(carDto.getImage());
-            }
+//            if(carDto.getImage() != null){
+//                existingCar.setImage(carDto.getImage());
+//            }
+            existingCar.setImage(carDto.getImage());
             existingCar.setBrand(carDto.getBrand());
             existingCar.setName(carDto.getName());
             existingCar.setTransmission(carDto.getTransmission());
@@ -63,6 +65,7 @@ public class AdminServiceImpl implements AdminService {
             existingCar.setPrice(carDto.getPrice());
             existingCar.setDescription(carDto.getDescription());
             existingCar.setYear(carDto.getYear());
+            existingCar.setFavourite(carDto.isFavourite());
             carRepository.save(existingCar);
             return true;
         } else {
